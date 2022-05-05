@@ -71,6 +71,54 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-常量传播" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/" class="article-date">
+  <time class="dt-published" datetime="2022-04-25T13:51:30.000Z" itemprop="datePublished">2022-04-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/">数据流分析</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>回顾</p>
+<h5 id="简单Basic-Block优化"><a href="#简单Basic-Block优化" class="headerlink" title="简单Basic-Block优化"></a>简单Basic-Block优化</h5><ul>
+<li>Constant propagation</li>
+<li>Dead code elimination</li>
+</ul>
+<h5 id="Constant-pro扩展到control-flow-graph"><a href="#Constant-pro扩展到control-flow-graph" class="headerlink" title="Constant pro扩展到control-flow graph"></a>Constant pro扩展到control-flow graph</h5><p>需要考虑安全性——是否有多种可能？<br>x可被const k代替的条件: 每条到x的路上, x上一个指派是<code>x:=k</code> (**)(nontrivial!)<br>需要 global dataflow analysis </p>
+<p>程序的任何位置, X可能状态: c(只会是c), non-c(可能多种值), unreachable</p>
+<p>对于一般的DAG图, 分析是相对比较简单的</p>
+<h5 id="循环分析"><a href="#循环分析" class="headerlink" title="循环分析"></a>循环分析</h5><p>循环依赖（噔噔咚）<br>基于假设的double check<br>P78最后的例子</p>
+<h5 id="对抽象值的排序"><a href="#对抽象值的排序" class="headerlink" title="对抽象值的排序"></a>对抽象值的排序</h5><p>$\bottom &lt; c &lt; T $</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://birdium.github.io/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/" data-id="cl2sztbbk00002iwlbc841g1s" data-title="数据流分析" class="article-share-link">分享</a>
+      
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-窥孔优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2022/04/25/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/" class="article-date">
@@ -227,6 +275,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/">数据流分析</a>
+          </li>
         
           <li>
             <a href="/2022/04/25/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/">窥孔优化</a>
