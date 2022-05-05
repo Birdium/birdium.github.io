@@ -1,232 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>窥孔优化 | Birdium 的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="基本思想：跳过中间代码，直接对汇编进行优化peephole 代表一系列(通常连续的)指令优化器将其替换成另外一个等价的序列 $i_1, … ,i_n \rightarrow j_1, …, j_m$例如 move a b, move b a 和 move a b (这里课程视频讲的好简单。。)">
-<meta property="og:type" content="article">
-<meta property="og:title" content="窥孔优化">
-<meta property="og:url" content="http://birdium.github.io/2022/04/25/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/index.html">
-<meta property="og:site_name" content="Birdium 的博客">
-<meta property="og:description" content="基本思想：跳过中间代码，直接对汇编进行优化peephole 代表一系列(通常连续的)指令优化器将其替换成另外一个等价的序列 $i_1, … ,i_n \rightarrow j_1, …, j_m$例如 move a b, move b a 和 move a b (这里课程视频讲的好简单。。)">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-25T13:43:55.000Z">
-<meta property="article:modified_time" content="2022-04-25T13:49:28.139Z">
-<meta property="article:author" content="Birdium">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Birdium 的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 6.1.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Birdium 的博客</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://birdium.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-窥孔优化" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/04/25/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/" class="article-date">
-  <time class="dt-published" datetime="2022-04-25T13:43:55.000Z" itemprop="datePublished">2022-04-25</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      窥孔优化
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>基本思想：跳过中间代码，直接对汇编进行优化<br>peephole 代表一系列(通常连续的)指令<br>优化器将其替换成另外一个等价的序列</p>
-<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p>$i_1, … ,i_n \rightarrow j_1, …, j_m$<br>例如 move a b, move b a 和 move a b</p>
-<p>(这里课程视频讲的好简单。。)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://birdium.github.io/2022/04/25/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/" data-id="cl2es06ga0000quwl0gdthg5m" data-title="窥孔优化" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-    <a href="/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">前一篇</strong>
-      <div class="article-nav-title">
-        
-          数据流分析
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2022/04/25/%E5%B1%80%E9%83%A8%E4%BC%98%E5%8C%96/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">局部优化</div>
-    </a>
-  
-</nav>
-
-  
-</article>
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-  
-    
+{% block page_class %}page-post-detail{% endblock %}
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li></ul>
+
+{% block content %}
+
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
+
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/05/05/Compiler(1)/">Compiler(1)</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/">数据流分析</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/">窥孔优化</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/%E5%B1%80%E9%83%A8%E4%BC%98%E5%8C%96/">局部优化</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/Hello-World/Hello-World/">Hello, World!</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2022 Birdium<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}

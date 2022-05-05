@@ -1,228 +1,37 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  
-  <title>Compiler(1) | Birdium 的博客</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="(伪装成Compiler开发日志的周记) Compiler赛kemomimicompiler投入开发第一周 试着学了一点cmake, 感觉没有传说中那么呃呃, 相比于直接写Makefile还是舒服多了 学了一些flex &amp; bison, 队友很给力把flex拍完了, 然后我在半知半解的情况下打完了SysY规则, 自然是巨大多报错, 这几天看了看虎书上语法分析部分, 感觉实在是太莽了…忽视了">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Compiler(1)">
-<meta property="og:url" content="http://birdium.github.io/2022/05/05/Compiler(1)/index.html">
-<meta property="og:site_name" content="Birdium 的博客">
-<meta property="og:description" content="(伪装成Compiler开发日志的周记) Compiler赛kemomimicompiler投入开发第一周 试着学了一点cmake, 感觉没有传说中那么呃呃, 相比于直接写Makefile还是舒服多了 学了一些flex &amp; bison, 队友很给力把flex拍完了, 然后我在半知半解的情况下打完了SysY规则, 自然是巨大多报错, 这几天看了看虎书上语法分析部分, 感觉实在是太莽了…忽视了">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-05-05T12:46:54.000Z">
-<meta property="article:modified_time" content="2022-05-05T13:20:03.444Z">
-<meta property="article:author" content="Birdium">
-<meta name="twitter:card" content="summary">
-  
-    <link rel="alternate" href="/atom.xml" title="Birdium 的博客" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-    
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-source-code-pro@0.0.71/index.min.css">
-
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-<meta name="generator" content="Hexo 6.1.0"></head>
-
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Birdium 的博客</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS 订阅"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="搜索"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://birdium.github.io"></form>
-      </div>
-    </div>
-  </div>
-</header>
-
-      <div class="outer">
-        <section id="main"><article id="post-Compiler(1)" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2022/05/05/Compiler(1)/" class="article-date">
-  <time class="dt-published" datetime="2022-05-05T12:46:54.000Z" itemprop="datePublished">2022-05-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 class="p-name article-title" itemprop="headline name">
-      Compiler(1)
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>(伪装成Compiler开发日志的周记)</p>
-<h4 id="Compiler赛"><a href="#Compiler赛" class="headerlink" title="Compiler赛"></a>Compiler赛</h4><p>kemomimicompiler投入开发第一周</p>
-<p>试着学了一点cmake, 感觉没有传说中那么呃呃, 相比于直接写Makefile还是舒服多了</p>
-<p>学了一些flex &amp; bison, 队友很给力把flex拍完了, 然后我在半知半解的情况下打完了SysY规则, 自然是巨大多报错, 这几天看了看虎书上语法分析部分, 感觉实在是太莽了…忽视了好多能用的特性<br>当时出bug我还在怀疑是不是规则错了并脑补了一些错误场景…实则暴露了自己完全不懂LALR的事实(太草), 在debug过程中也算是加深了对CFG之类的的理解吧.</p>
-<h4 id="操作系统"><a href="#操作系统" class="headerlink" title="操作系统"></a>操作系统</h4><p>时隔多年开始写Lab了, 感觉经历了ICS, 自己还是好菜(哭)<br>相比起ICS来说OS少了手册, 有那么些不知所措</p>
-<h4 id="数电实验"><a href="#数电实验" class="headerlink" title="数电实验"></a>数电实验</h4><p>5.1 花了一整天调试完了exp09, 解决性能问题的方法是给显存时钟降频. 在实现扩展功能后编译时长从3分钟涨到了8分钟, 可喜可贺</p>
-<h4 id="啥也没了"><a href="#啥也没了" class="headerlink" title="啥也没了"></a>啥也没了</h4><p>果然还是写不出什么有意思的东西..那就这样吧!</p>
-<h4 id="近期打算"><a href="#近期打算" class="headerlink" title="近期打算"></a>近期打算</h4><p>学{操作系统, 编译原理};<br>看动画;<br>diep.io;<br>消灭野蛮作业,,,</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://birdium.github.io/2022/05/05/Compiler(1)/" data-id="cl2t1cw820000r0wl5z6o3f5x" data-title="Compiler(1)" class="article-share-link">分享</a>
-      
-      
-      
-    </footer>
-  </div>
-  
-    
-<nav id="article-nav">
-  
-  
-    <a href="/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">后一篇</strong>
-      <div class="article-nav-title">数据流分析</div>
-    </a>
-  
-</nav>
-
-  
-</article>
+{% extends '_layout.swig' %}
+{% import '_macro/post.swig' as post_template %}
+{% import '_macro/sidebar.swig' as sidebar_template %}
 
 
-</section>
-        
-          <aside id="sidebar">
-  
-    
+{% block title %}{{ page.title }} | {{ config.title }}{% endblock %}
 
-  
-    
+{% block page_class %}page-post-detail{% endblock %}
 
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">归档</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">五月 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">四月 2022</a></li></ul>
+
+{% block content %}
+
+  <div id="posts" class="posts-expand">
+    {{ post_template.render(page) }}
+
+    <div class="post-spread">
+      {% if theme.jiathis %}
+        {% include '_partials/share/jiathis.swig' %}
+      {% elseif theme.baidushare %}
+        {% include '_partials/share/baidushare.swig' %}
+      {% elseif theme.add_this_id %}
+        {% include '_partials/share/add-this.swig' %}
+      {% elseif theme.duoshuo_shortname and theme.duoshuo_share %}
+        {% include '_partials/share/duoshuo_share.swig' %}
+      {% endif %}
     </div>
   </div>
 
+{% endblock %}
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">最新文章</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2022/05/05/Compiler(1)/">Compiler(1)</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/">数据流分析</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/">窥孔优化</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/%E5%B1%80%E9%83%A8%E4%BC%98%E5%8C%96/">局部优化</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/25/Hello-World/Hello-World/">Hello, World!</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+{% block sidebar %}
+  {{ sidebar_template.render(true) }}
+{% endblock %}
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2022 Birdium<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.4.1.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
-  </div>
-</body>
-</html>
+{% block script_extra %}
+  {% include '_scripts/pages/post-details.swig' %}
+{% endblock %}
