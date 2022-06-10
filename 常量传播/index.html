@@ -2,10 +2,8 @@
 
 
 
-  
 
-
-<html class="theme-next mist use-motion" lang="zh-CN">
+<html class="theme-next mist" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -79,15 +77,15 @@
 
 
 
-<meta name="description" content="Hello, World!Good Bye, Cruel World!">
+<meta name="description" content="回顾 简单Basic-Block优化 Constant propagation Dead code elimination  Constant pro扩展到control-flow graph需要考虑安全性——是否有多种可能？x可被const k代替的条件: 每条到x的路上, x上一个指派是x:&#x3D;k (**)(nontrivial!)需要 global dataflow analysis  程序的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello, World!">
-<meta property="og:url" content="http://birdium.github.io/2022/04/25/Hello-World/Hello-World/index.html">
+<meta property="og:title" content="数据流分析">
+<meta property="og:url" content="http://birdium.github.io/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/index.html">
 <meta property="og:site_name" content="Birdium 的博客">
-<meta property="og:description" content="Hello, World!Good Bye, Cruel World!">
+<meta property="og:description" content="回顾 简单Basic-Block优化 Constant propagation Dead code elimination  Constant pro扩展到control-flow graph需要考虑安全性——是否有多种可能？x可被const k代替的条件: 每条到x的路上, x上一个指派是x:&#x3D;k (**)(nontrivial!)需要 global dataflow analysis  程序的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-25T06:54:51.000Z">
-<meta property="article:modified_time" content="2022-04-25T13:41:08.937Z">
+<meta property="article:published_time" content="2022-04-25T13:51:30.000Z">
+<meta property="article:modified_time" content="2022-04-25T14:31:28.167Z">
 <meta property="article:author" content="Birdium">
 <meta name="twitter:card" content="summary">
 
@@ -102,7 +100,7 @@
     sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
     fancybox: true,
     tabs: true,
-    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     duoshuo: {
       userId: '0',
       author: 'Author'
@@ -119,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://birdium.github.io/2022/04/25/Hello-World/Hello-World/"/>
+  <link rel="canonical" href="http://birdium.github.io/常量传播/"/>
 
 
 
 
 
-  <title>Hello, World! | Birdium 的博客</title>
+  <title>数据流分析 | Birdium 的博客</title>
   
 
 
@@ -242,7 +240,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://birdium.github.io/2022/04/25/Hello-World/Hello-World/">
+    <link itemprop="mainEntityOfPage" href="http://birdium.github.io/%E5%B8%B8%E9%87%8F%E4%BC%A0%E6%92%AD/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -259,7 +257,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello, World!</h1>
+          <h1 class="post-title" itemprop="name headline">数据流分析</h1>
         
 
         <div class="post-meta">
@@ -271,7 +269,7 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-04-25T14:54:51+08:00">
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-04-25T21:51:30+08:00">
                 2022-04-25
               </time>
             
@@ -309,7 +307,16 @@
       
 
       
-        <h5 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World!"></a>Hello, World!</h5><p>Good Bye, Cruel World!</p>
+        <p>回顾</p>
+<h5 id="简单Basic-Block优化"><a href="#简单Basic-Block优化" class="headerlink" title="简单Basic-Block优化"></a>简单Basic-Block优化</h5><ul>
+<li>Constant propagation</li>
+<li>Dead code elimination</li>
+</ul>
+<h5 id="Constant-pro扩展到control-flow-graph"><a href="#Constant-pro扩展到control-flow-graph" class="headerlink" title="Constant pro扩展到control-flow graph"></a>Constant pro扩展到control-flow graph</h5><p>需要考虑安全性——是否有多种可能？<br>x可被const k代替的条件: 每条到x的路上, x上一个指派是<code>x:=k</code> (**)(nontrivial!)<br>需要 global dataflow analysis </p>
+<p>程序的任何位置, X可能状态: c(只会是c), non-c(可能多种值), unreachable</p>
+<p>对于一般的DAG图, 分析是相对比较简单的</p>
+<h5 id="循环分析"><a href="#循环分析" class="headerlink" title="循环分析"></a>循环分析</h5><p>循环依赖（噔噔咚）<br>基于假设的double check<br>P78最后的例子</p>
+<h5 id="对抽象值的排序"><a href="#对抽象值的排序" class="headerlink" title="对抽象值的排序"></a>对抽象值的排序</h5><p>$\bottom &lt; c &lt; T $</p>
 
       
     </div>
@@ -334,14 +341,18 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/%E7%AA%A5%E5%AD%94%E4%BC%98%E5%8C%96/" rel="next" title="窥孔优化">
+                <i class="fa fa-chevron-left"></i> 窥孔优化
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2022/04/25/%E5%B1%80%E9%83%A8%E4%BC%98%E5%8C%96/" rel="prev" title="局部优化">
-                局部优化 <i class="fa fa-chevron-right"></i>
+              <a href="/Compiler(1)/" rel="prev" title="Compiler(1)">
+                Compiler(1) <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -419,7 +430,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -456,7 +467,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello, World!</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E7%AE%80%E5%8D%95Basic-Block%E4%BC%98%E5%8C%96"><span class="nav-number">1.</span> <span class="nav-text">简单Basic-Block优化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Constant-pro%E6%89%A9%E5%B1%95%E5%88%B0control-flow-graph"><span class="nav-number">2.</span> <span class="nav-text">Constant pro扩展到control-flow graph</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E5%88%86%E6%9E%90"><span class="nav-number">3.</span> <span class="nav-text">循环分析</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E5%AF%B9%E6%8A%BD%E8%B1%A1%E5%80%BC%E7%9A%84%E6%8E%92%E5%BA%8F"><span class="nav-number">4.</span> <span class="nav-text">对抽象值的排序</span></a></li></ol></div>
             
 
           </div>
