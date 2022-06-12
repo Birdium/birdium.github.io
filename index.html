@@ -316,20 +316,20 @@
 </ol>
 <h2 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h2><hr>
 <ol>
-<li>插值三问: \<ul>
+<li>插值三问:<ul>
 <li>插值是为什么? <del>好看(即答)</del> 连续性</li>
 <li>用什么插值? Polynomial</li>
 </ul>
 </li>
-<li>经典之拉格朗日插值. <br>没啥好说的: 可证明唯一性; 误差分析 <br>应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人&#x3D;0个人 <br>龙格现象: 边界的剧烈抖动</li>
+<li>经典之拉格朗日插值. \<br>没啥好说的: 可证明唯一性; 误差分析 \<br>应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人=0个人 \<br>龙格现象: 边界的剧烈抖动</li>
 <li>切比雪夫插值多项式: 解决龙格现象<ul>
-<li>动机: 提高对插值误差的最大值的控制: $\frac{\prod_{i&#x3D;1}^n(x-x_i)}{n!}f^{(n)}(c)$</li>
+<li>动机: 提高对插值误差的最大值的控制: $\frac{\prod_{i=1}^n(x-x_i)}{n!}f^{(n)}(c)$</li>
 <li>假设 $f: [-1, 1] \rightarrow \mathbb{R}$ \</li>
 <li>目标: 选取 $x_1, x_2, \cdots, x_n$ 最小化 $|| \prod(x-x_i) ||_{\infty}$</li>
-<li>$x_i &#x3D; \cos{\frac{(2i-1)\pi}{2n} }$</li>
-<li>Chebyshev插值多项式 $T_n(x):&#x3D;2^{n-1}(x-x_1)(x-x_2)\cdots(x-x_n)$</li>
-<li>等价于 $T_n(x):&#x3D; \cos{(n \arccos x)}$</li>
-<li>递归关系: $T_{n+1}(x) &#x3D; 2xT_n(x) - T_{n-1}(x)$</li>
+<li>$x_i = \cos{\frac{(2i-1)\pi}{2n} }$</li>
+<li>Chebyshev插值多项式 $T_n(x):=2^{n-1}(x-x_1)(x-x_2)\cdots(x-x_n)$</li>
+<li>等价于 $T_n(x):= \cos{(n \arccos x)}$</li>
+<li>递归关系: $T_{n+1}(x) = 2xT_n(x) - T_{n-1}(x)$</li>
 <li>可以证明的是, 这是令误差最小的插值方式</li>
 </ul>
 </li>
@@ -341,10 +341,10 @@
 <li>给定: $f: [0,1] \rightarrow R$</li>
 <li>目标: 构造多项式 $p$, 使得在 $x \in [0,1]$ 这一点上, $p(x)$ 尽可能接近 $f(x)$.</li>
 <li>$K \sim B(n, x)$</li>
-<li>$E[k]&#x3D;nx$, $Var[K]&#x3D;nx(1-x), Pr[K&#x3D;i] &#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
-<li>Bernstein Poly的一组基: $b_{n,i}&#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
+<li>$E[k]=nx$, $Var[K]=nx(1-x), Pr[K=i] = {n\choose i} x^i(1-x)^{n-i}$</li>
+<li>Bernstein Poly的一组基: $b_{n,i}= {n\choose i} x^i(1-x)^{n-i}$</li>
 <li>$\displaystyle \lim_{n\rightarrow \infty}Pr[|\frac K n - x| &gt; \delta]$ 对所有 $x$ 一致成立 </li>
-<li>Bernstein Poly的本体: $E[f(\frac K n)] &#x3D; \sum_{i&#x3D;0} f(\frac i n)b_{n, i}(x)$ <ul>
+<li>Bernstein Poly的本体: $E[f(\frac K n)] = \sum_{i=0} f(\frac i n)b_{n, i}(x)$ <ul>
 <li>个人理解: 等距采样, 加权平均(权是一个分布多项式函数)</li>
 </ul>
 </li>
@@ -354,21 +354,21 @@
 </ol>
 <h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><hr>
 <ol>
-<li>一般向量范数: $\displaystyle ||x||_k &#x3D; (\sum{|x_i|^k})^{\frac1 k}$</li>
-<li>函数范数: $||f||_{\infty} &#x3D; \sup |f|$, $||f||_2 &#x3D; (\int |f(x)|^k dx)^{\frac 1 k}$</li>
+<li>一般向量范数: $\displaystyle ||x||_k = (\sum{|x_i|^k})^{\frac1 k}$</li>
+<li>函数范数: $||f||_{\infty} = \sup |f|$, $||f||_2 = (\int |f(x)|^k dx)^{\frac 1 k}$ </li>
 </ol>
 <h2 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h2><hr>
 <ol>
-<li>几何: 简单投影 $A^TA\overline{x} &#x3D; A^Tb$</li>
-<li>微积分: 最小化 $(Ax-b)^T(Ax-b)$, 求解梯度 $\Delta &#x3D; 2A^TAx-2A^Tb &#x3D; 0$.</li>
-<li>Gram-Schmidt: 消除已经存在的维度上分量.</li>
+<li>几何: 简单投影 $A^TA\overline{x} = A^Tb$</li>
+<li>微积分: 最小化 $(Ax-b)^T(Ax-b)$, 求解梯度 $\Delta = 2A^TAx-2A^Tb = 0$.</li>
+<li>Gram-Schmidt: 消除已经存在的维度上分量. </li>
 </ol>
 <h2 id="内积空间于正交性"><a href="#内积空间于正交性" class="headerlink" title="内积空间于正交性"></a>内积空间于正交性</h2><hr>
 <ol>
 <li>条件: 对称 线性 正定</li>
-<li>正交: $&lt;\phi_i, \phi_j&gt; &#x3D; \begin{cases} C_i &amp; i &#x3D; j \ 0 &amp; i \neq j \end{cases}$</li>
-<li>Chebyshev多项式关于 $w(x) &#x3D; \frac{1}{\sqrt{1-x^2}}$ 所定义的内积正交: <br>$&lt;f,g&gt;<em>w &#x3D; \int</em>{-1}^1 f(x) g(x) \frac{dx}{\sqrt{1-x^2}}$</li>
-<li>三角级数正交:</li>
+<li>正交: $&lt;\phi_i, \phi_j&gt; = \begin{cases} C_i &amp; i = j \\ 0 &amp; i \neq j \end{cases}$</li>
+<li>Chebyshev多项式关于 $w(x) = \frac{1}{\sqrt{1-x^2}}$ 所定义的内积正交: \<br>$<f,g>_w = \int_{-1}^1 f(x) g(x) \frac{dx}{\sqrt{1-x^2}}$</li>
+<li>三角级数正交: </li>
 </ol>
 <h2 id="狐里叶变换"><a href="#狐里叶变换" class="headerlink" title="狐里叶变换"></a>狐里叶变换</h2><hr>
 <ol>
@@ -376,7 +376,7 @@
 <li>动机: 多项式乘法: $p(x) * q(x)$ <ol>
 <li>给定 $p(x), q(x)$ 的系数</li>
 <li>令 $m \geqslant 2n+1$, 选定系数 $x_0, x_1, \cdots, x_m$, 计算 $p,q $ 在上面的点值. </li>
-<li>计算 $r(x_i) &#x3D; p(x_i)q(x_i)$</li>
+<li>计算 $r(x_i) = p(x_i)q(x_i)$</li>
 <li>对 $r$ 插值, 还原出 $r$ 的系数</li>
 </ol>
 </li>
@@ -389,48 +389,48 @@
 </li>
 <li>FFT: <ol>
 <li>引入分治, 将 $p(x)$ 分成奇数和偶数:<ul>
-<li>$E(z) &#x3D; a_0 + a_2z + \cdots$</li>
-<li>$O(z) &#x3D; a_1 + a_3z + \cdots$</li>
-<li>$p(z) &#x3D; E(z^2) + zO(z^2)$</li>
+<li>$E(z) = a_0 + a_2z + \cdots$</li>
+<li>$O(z) = a_1 + a_3z + \cdots$</li>
+<li>$p(z) = E(z^2) + zO(z^2)$</li>
 </ul>
 </li>
 <li>IFFT:<ul>
-<li>DFT, FFT: $p(\omega^l)&#x3D; \frac1{\sqrt{n+1}}\sum a_j \omega_{lj}$</li>
-<li>IFFT: $a_l &#x3D; \sum p(\omega^j) \omega^{-lj}$, 和DFT唯一区别是 $\omega \rightarrow \omega^{-1}$</li>
+<li>DFT, FFT: $p(\omega^l)= \frac1{\sqrt{n+1}}\sum a_j \omega_{lj}$</li>
+<li>IFFT: $a_l = \sum p(\omega^j) \omega^{-lj}$, 和DFT唯一区别是 $\omega \rightarrow \omega^{-1}$</li>
 </ul>
 </li>
 </ol>
 </li>
 </ol>
 <h2 id="解方程组之迭代Method"><a href="#解方程组之迭代Method" class="headerlink" title="解方程组之迭代Method"></a>解方程组之迭代Method</h2><ol>
-<li>线性方程组的数值稳定性: $Ax &#x3D; b$<ul>
-<li>定义条件数 $cond(A) &#x3D; \frac{x相对误差}{b相对误差}$</li>
-<li>$cond(A) &#x3D; \max{\frac{||A^{-1}e||&#x2F;||A^{-1}b||}{||e|| &#x2F; ||b||}} &#x3D; \max{\frac{||A^{-1}e||}{||e||}} \max{\frac{||Ax||}{||x||}}$</li>
-<li>引入矩阵的算子范数 $||A||:&#x3D; \max{\frac{||Ax||}{||x||}}$<ul>
-<li>特别地有: $||A||_2:&#x3D; \max{\frac{||Ax||_2}{||x||<em>2}} &#x3D; \sqrt{\lambda</em>{max}(A^TA)}$</li>
+<li>线性方程组的数值稳定性: $Ax = b$<ul>
+<li>定义条件数 $cond(A) = \frac{x相对误差}{b相对误差}$</li>
+<li>$cond(A) = \max{\frac{||A^{-1}e||/||A^{-1}b||}{||e|| / ||b||}} = \max{\frac{||A^{-1}e||}{||e||}} \max{\frac{||Ax||}{||x||}}$</li>
+<li>引入矩阵的算子范数 $||A||:= \max{\frac{||Ax||}{||x||}}$<ul>
+<li>特别地有: $||A||_2:= \max{\frac{||Ax||_2}{||x||_2}} = \sqrt{\lambda_{max}(A^TA)}$</li>
 </ul>
 </li>
-<li>$cond(A) &#x3D; ||A|| \cdot ||A^{-1}||$</li>
+<li>$cond(A) = ||A|| \cdot ||A^{-1}||$</li>
 </ul>
 </li>
 <li>高斯消元法: 朴素的 $O(n^3)$ 做法</li>
 <li>Jacobi迭代:  <ul>
 <li>收敛的充分条件: 严格对角占优(对角线上元素超过行内其他元素)</li>
-<li>不动点迭代形式: $A&#x3D;L+D+U$, $Ax&#x3D;b$ 可以写为 $x&#x3D;D^{-1}(b-(L+U)x)$</li>
-<li>Gauss-Seidel: $(L+D)x&#x3D;b-Ux$</li>
-<li>收敛性: $x_{k+1} &#x3D; Ax_{k} + b$ <ul>
+<li>不动点迭代形式: $A=L+D+U$, $Ax=b$ 可以写为 $x=D^{-1}(b-(L+U)x)$</li>
+<li>Gauss-Seidel: $(L+D)x=b-Ux$</li>
+<li>收敛性: $x_{k+1} = Ax_{k} + b$ <ul>
 <li>令 $x_*$ 为一个不动点</li>
-<li>$x_k-x_* &#x3D; A^k(x_0-x_*)$</li>
+<li>$x_k-x_<em> = A^k(x_0-x_</em>)$</li>
 <li>收敛条件:<ul>
 <li>$A^k \rightarrow 0$</li>
-<li>$x_0 - x_*$ 存在于一个好的线性子空间里.</li>
+<li>$x_0 - x_*$ 存在于一个好的线性子空间里.   </li>
 </ul>
 </li>
 <li>谱半径: 最大的{特征值的绝对值}</li>
 </ul>
 </li>
 <li>Jacobi迭代的谱半径: $\rho(D^{-1}(L+U))$, 若满足严格对角占有, 可以证明$\rho &lt; 1$</li>
-<li>Moore-Penrose伪逆 $\overline x &#x3D; (A^TA)^{-1}A^Tb$, $(A^TA)^{-1}A^T$ 是维尼.</li>
+<li>Moore-Penrose伪逆 $\overline x = (A^TA)^{-1}A^Tb$, $(A^TA)^{-1}A^T$ 是维尼.</li>
 </ul>
 </li>
 </ol>
@@ -557,7 +557,7 @@
 <h2 id="第一部分-入门篇"><a href="#第一部分-入门篇" class="headerlink" title="第一部分: 入门篇"></a>第一部分: 入门篇</h2><ol>
 <li>简介: 模式识别是个啥 (是个啥啊)</li>
 <li>数学基础: 线代与概统的Review (每门课都会来一遍嘛..)</li>
-<li>PR框架与模块–以最近邻为例 (同1)</li>
+<li>PR框架与模块—以最近邻为例 (同1)</li>
 </ol>
 <h2 id="第二部分-加速篇"><a href="#第二部分-加速篇" class="headerlink" title="第二部分: 加速篇"></a>第二部分: 加速篇</h2><ol>
 <li>PCA (优雅地降维)</li>
@@ -571,14 +571,14 @@
 </ol>
 <h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>(开卷考试的概念有什么复习的必要吗)</p>
 <blockquote>
-<p>PR is a field in ML. <br>In ML, PR is the assignment of a label to a given input value.</p>
+<p>PR is a field in ML. \<br>In ML, PR is the assignment of a label to a given input value.</p>
 </blockquote>
 <p>PRML: </p>
 <blockquote>
 <p>automatic discovery of regularities in data … and with the use of these regularities to take actions such as classifying the data into different categories.</p>
 </blockquote>
 <h2 id="2-数学基础"><a href="#2-数学基础" class="headerlink" title="2. 数学基础"></a>2. 数学基础</h2><p>线代+概率+优化+矩阵微积分+算法复杂度<br>(没什么好害怕的)</p>
-<h2 id="3-模式识别系统"><a href="#3-模式识别系统" class="headerlink" title="3. 模式识别系统"></a>3. 模式识别系统</h2><h2 id="4-系统的评估"><a href="#4-系统的评估" class="headerlink" title="4. 系统的评估"></a>4. 系统的评估</h2><h2 id="课程评价"><a href="#课程评价" class="headerlink" title="课程评价"></a>课程评价</h2><p>边复习边写一下评价吧.. <br>教材: 写的挺好的, 从逻辑上很清晰, 而且挺详细用心的 <br>上课: 这学期主要是网课也没什么办法评价… <br>内容: 数学很多, 算是数学基础那一部分的综合, 广度比较高, 不过大多只是个简介</p>
+<h2 id="3-模式识别系统"><a href="#3-模式识别系统" class="headerlink" title="3. 模式识别系统"></a>3. 模式识别系统</h2><h2 id="4-系统的评估"><a href="#4-系统的评估" class="headerlink" title="4. 系统的评估"></a>4. 系统的评估</h2><h2 id="课程评价"><a href="#课程评价" class="headerlink" title="课程评价"></a>课程评价</h2><p>边复习边写一下评价吧.. \<br>教材: 写的挺好的, 从逻辑上很清晰, 而且挺详细用心的 \<br>上课: 这学期主要是网课也没什么办法评价… \<br>内容: 数学很多, 算是数学基础那一部分的综合, 广度比较高, 不过大多只是个简介</p>
 
           
         
@@ -698,16 +698,16 @@
       
         
           
-            <p>期末复习~~~ 虽然不是很想的说 <br>每到期末总感觉这学期好颓 <br>但好像又没好好颓 <br>ま、いいや～　</p>
+            <p>期末复习~~~ 虽然不是很想的说 \<br>每到期末总感觉这学期好颓 \<br>但好像又没好好颓 \<br>ま、いいや～　</p>
 <hr>
-<p>Current Time: 2022&#x2F;6&#x2F;10 22:47 <br>Missions: </p>
+<p>Current Time: 2022/6/10 22:47 \<br>Missions: </p>
 <ul>
-<li>6&#x2F;15 [Pattern Recognition]</li>
-<li>6&#x2F;16 [Math Logic]</li>
-<li>6&#x2F;17 [Numerical Analysis]</li>
-<li>6&#x2F;18 [Algorithm Design and Analysis]</li>
-<li>6&#x2F;20 [Digital Logic and Computer Architecture]</li>
-<li>6&#x2F;26 [Digital Logic and Computer Architecture Experiments]</li>
+<li>6/15 [Pattern Recognition]</li>
+<li>6/16 [Math Logic]</li>
+<li>6/17 [Numerical Analysis]</li>
+<li>6/18 [Algorithm Design and Analysis]</li>
+<li>6/20 [Digital Logic and Computer Architecture]</li>
+<li>6/26 [Digital Logic and Computer Architecture Experiments]</li>
 </ul>
 <hr>
 <p>期末試験の勉強気持ち良すぎだろ！</p>
@@ -961,15 +961,15 @@
       
         
           
-            <p>又一周过去了，令人感叹。<br>这周的主要工作：完成了AST树部分的代码。<br>但是AST感觉有点丑。。不管了，跑出来了就是好的。 <br>上周的目标除了操作系统（实在是抽不出多少精力了）基本算是完成了 \</p>
+            <p>又一周过去了，令人感叹。\<br>这周的主要工作：完成了AST树部分的代码。\<br>但是AST感觉有点丑。。不管了，跑出来了就是好的。 \<br>上周的目标除了操作系统（实在是抽不出多少精力了）基本算是完成了 \</p>
 <h3 id="编译原理"><a href="#编译原理" class="headerlink" title="编译原理"></a>编译原理</h3><hr>
-<p>看了鲸书，算是三本书都稍微看过一点了 <br>感想：这三本区别也太大了吧 <br>给我的感觉是龙书比较理论，虎书偏向实践，鲸书就全是优化了 <br>（所以看起来鲸书更有用些，目前） <br>这周的目标是Semantic Analysis \</p>
+<p>看了鲸书，算是三本书都稍微看过一点了 \<br>感想：这三本区别也太大了吧 \<br>给我的感觉是龙书比较理论，虎书偏向实践，鲸书就全是优化了 \<br>（所以看起来鲸书更有用些，目前） \<br>这周的目标是Semantic Analysis \</p>
 <h3 id="数电"><a href="#数电" class="headerlink" title="数电"></a>数电</h3><hr>
 <p>谔谔</p>
 <h3 id="计算方法"><a href="#计算方法" class="headerlink" title="计算方法"></a>计算方法</h3><hr>
-<p>两节课没上了。。把上周作业做完了，花了很久理解题目但是理解了之后有一种豁然开朗的感觉 <br>数理基础还是欠缺啊</p>
+<p>两节课没上了。。把上周作业做完了，花了很久理解题目但是理解了之后有一种豁然开朗的感觉 \<br>数理基础还是欠缺啊</p>
 <h3 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h3><hr>
-<p>下学期课表出现了，那就列个计划吧 <br><strong>形式语言与自动机</strong> <br><strong>软件工程</strong> <br><strong>猫概</strong> (逃不掉的) <br>计算机网络 <br>数据库概论 <br><em>编译原理</em> <br><em>软件分析</em> <br><em>程序设计语言的形式语义</em> <br><br>又是跨选火葬场吗。。<br>不过都会比这学期课爽一点。。这学期实在是一言难尽啊</p>
+<p>下学期课表出现了，那就列个计划吧 \<br><strong>形式语言与自动机</strong> \<br><strong>软件工程</strong> \<br><strong>猫概</strong> (逃不掉的) \<br>计算机网络 \<br>数据库概论 \<br><em>编译原理</em> \<br><em>软件分析</em> \<br><em>程序设计语言的形式语义</em> \<br>\<br>又是跨选火葬场吗。。<br>不过都会比这学期课爽一点。。这学期实在是一言难尽啊</p>
 
           
         
@@ -1346,7 +1346,7 @@
         
           
             <p>基本思想：跳过中间代码，直接对汇编进行优化<br>peephole 代表一系列(通常连续的)指令<br>优化器将其替换成另外一个等价的序列</p>
-<h5 id=""><a href="#" class="headerlink" title=""></a></h5><p>$i_1, … ,i_n \rightarrow j_1, …, j_m$<br>例如 move a b, move b a 和 move a b</p>
+<h5 id=""><a href="#" class="headerlink" title=" "></a> </h5><p>$i_1, … ,i_n \rightarrow j_1, …, j_m$<br>例如 move a b, move b a 和 move a b</p>
 <p>(这里课程视频讲的好简单。。)</p>
 
           
@@ -1468,15 +1468,17 @@
         
           
             <p>局部优化相对来说是最简单的</p>
-<h5 id="Algebraic-Simplifications"><a href="#Algebraic-Simplifications" class="headerlink" title="Algebraic Simplifications"></a>Algebraic Simplifications</h5><p><code>x:=x+0</code><br><code>x:=x*1</code><br>可被移除<br><code>x:=x*0</code> to <code>x:=0</code><br>也许在机器上没有区别，但可能触发其他优化<br><code>y:=y**2</code> to <code>y:=y*y</code><br>避免了内置函数调用<br><code>x:=x*8</code> to <code>x:=x&lt;&lt;3</code><br><code>x:=x*15</code> to <code>t:=x&lt;&lt;4;x:=t-x</code><br>(要考虑目标机器, 也许会快)</p>
-<h5 id="Constant-folding"><a href="#Constant-folding" class="headerlink" title="Constant folding"></a>Constant folding</h5><p>对于形如<code>x:=y op z</code>, y, z是常量<br>可以直接在编译期计算 z, 比如 <code>x:=2+2</code><br><code>if 2&lt;0 jump ...</code> 直接删除<br>(可能是危险的！)<br><a target="_blank" rel="noopener" href="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_90f3416c5e30a4770d490c418f2bebf6.jpg"><img src="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_90f3416c5e30a4770d490c418f2bebf6.jpg"></a><br>(两边架构的不同导致了潜在的浮点精度危险)<br>做法：编译器内保持全精度，在生成代码中生成文本，让Y的架构去取舍</p>
+<h5 id="Algebraic-Simplifications"><a href="#Algebraic-Simplifications" class="headerlink" title="Algebraic Simplifications"></a>Algebraic Simplifications</h5><pre><code class="lang-x:=x+0```">```x:=x*1
+</code></pre>
+<p>可被移除<br><code>x:=x*0</code> to <code>x:=0</code><br>也许在机器上没有区别，但可能触发其他优化<br><code>y:=y**2</code> to <code>y:=y*y</code><br>避免了内置函数调用<br><code>x:=x*8</code> to <code>x:=x&lt;&lt;3</code><br><code>x:=x*15</code> to <code>t:=x&lt;&lt;4;x:=t-x</code><br>(要考虑目标机器, 也许会快)</p>
+<h5 id="Constant-folding"><a href="#Constant-folding" class="headerlink" title="Constant folding"></a>Constant folding</h5><p>对于形如<code>x:=y op z</code>, y, z是常量<br>可以直接在编译期计算 z, 比如 <code>x:=2+2</code><br><code>if 2&lt;0 jump ...</code> 直接删除<br>(可能是危险的！)<br><a target="_blank" rel="noopener" href="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_90f3416c5e30a4770d490c418f2bebf6.jpg"><img src="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_90f3416c5e30a4770d490c418f2bebf6.jpg" alt=""></a><br>(两边架构的不同导致了潜在的浮点精度危险)<br>做法：编译器内保持全精度，在生成代码中生成文本，让Y的架构去取舍</p>
 <h5 id="Eliminate-unreachable-basic-blocks"><a href="#Eliminate-unreachable-basic-blocks" class="headerlink" title="Eliminate unreachable basic blocks"></a>Eliminate unreachable basic blocks</h5><p>删除不可达block<br>垃圾回收（确信）<br>精简程序大小，可能提升速度</p>
 <ul>
 <li>指令cache</li>
 </ul>
 <p>应用范围：调试代码，库函数，其他优化导致的结果</p>
-<h5 id="reg-assignments"><a href="#reg-assignments" class="headerlink" title="reg assignments"></a>reg assignments</h5><p>尽量避免多次指派同一个寄存器<br>x 在 x:&#x3D; 的时候被初次使用<br>因此如果 rhs相同，则可以合并<br><a target="_blank" rel="noopener" href="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_ae80ef37f6dcc326f5f1177593245c0d.jpg"><img src="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_ae80ef37f6dcc326f5f1177593245c0d.jpg"></a></p>
-<h5 id=""><a href="#" class="headerlink" title=""></a></h5>
+<h5 id="reg-assignments"><a href="#reg-assignments" class="headerlink" title="reg assignments"></a>reg assignments</h5><p>尽量避免多次指派同一个寄存器<br>x 在 x:= 的时候被初次使用<br>因此如果 rhs相同，则可以合并<br><a target="_blank" rel="noopener" href="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_ae80ef37f6dcc326f5f1177593245c0d.jpg"><img src="http://akarin.cc/wp-content/uploads/2022/04/wp_editor_md_ae80ef37f6dcc326f5f1177593245c0d.jpg" alt=""></a></p>
+<h5 id=""><a href="#" class="headerlink" title=" "></a> </h5>
           
         
       
@@ -1894,6 +1896,28 @@
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
 
   
 
