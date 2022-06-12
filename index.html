@@ -237,6 +237,152 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://birdium.github.io/NumericalAnalysis/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Birdium 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/NumericalAnalysis/" itemprop="url">NumericalAnalysis</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-06-12T13:02:20+08:00">
+                2022-06-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>三大部分: <strong>插值与拟合</strong>, <strong>特征值与随机游走</strong>, <strong>最优化与线性规划</strong></p>
+<h2 id="方程求根"><a href="#方程求根" class="headerlink" title="方程求根"></a>方程求根</h2><ol>
+<li>二分法 猫都会做</li>
+<li>不动点迭代: 需要目标点导数比较小</li>
+<li>根的敏感性与误差分析<h2 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h2></li>
+</ol>
+<hr>
+<ol>
+<li>插值三问: \<ul>
+<li>插值是为什么? <del>好看(即答)</del> 连续性</li>
+<li>用什么插值? Polynomial</li>
+</ul>
+</li>
+<li>经典之拉格朗日插值. <br>没啥好说的: 可证明唯一性; 误差分析 <br>应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人&#x3D;0个人 <br>龙格现象: 边界的剧烈抖动</li>
+<li>Weierstrass定理: 连续函数可以任意地被多项式逼近</li>
+<li>Bernstein Polynomial:<ul>
+<li>给定: $f: [0,1] \rightarrow R$</li>
+<li>目标: 构造多项式 $p$, 使得在 $x \in [0,1]$ 这一点上, $p(x)$ 尽可能接近 $f(x)$.</li>
+<li>$K ~ B(n, x)$</li>
+<li>$E[k]&#x3D;nx$, $Var[K]&#x3D;nx(1-x), Pr[K&#x3D;i] &#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
+<li>Bernstein Poly的一组基: $b_{n,i}&#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
+<li>$\displaystyle \lim_{n\rightarrow \infty}Pr[|\frac K n - x| &gt; \delta]$ 对所有 $x$ 一致成立 </li>
+<li>Bernstein Poly的本体: $E[f(\frac K n)] &#x3D; \sum_{i&#x3D;0} f(\frac i n)b_{n, i}(x)$ </li>
+<li></li>
+</ul>
+</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://birdium.github.io/PatternRecognition/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -324,7 +470,17 @@
 <li>稀疏数据 (处理丑陋的数据)</li>
 <li>HMM (又是你, 马尔可夫)</li>
 </ol>
-<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2>
+<h2 id="1-简介"><a href="#1-简介" class="headerlink" title="1. 简介"></a>1. 简介</h2><p>(开卷考试的概念有什么复习的必要吗)</p>
+<blockquote>
+<p>PR is a field in ML. <br>In ML, PR is the assignment of a label to a given input value.</p>
+</blockquote>
+<p>PRML: </p>
+<blockquote>
+<p>automatic discovery of regularities in data … and with the use of these regularities to take actions such as classifying the data into different categories.</p>
+</blockquote>
+<h2 id="2-数学基础"><a href="#2-数学基础" class="headerlink" title="2. 数学基础"></a>2. 数学基础</h2><p>线代+概率+优化+矩阵微积分+算法复杂度<br>(没什么好害怕的)</p>
+<h2 id="3-模式识别系统"><a href="#3-模式识别系统" class="headerlink" title="3. 模式识别系统"></a>3. 模式识别系统</h2><h2 id="4-系统的评估"><a href="#4-系统的评估" class="headerlink" title="4. 系统的评估"></a>4. 系统的评估</h2><h2 id="课程评价"><a href="#课程评价" class="headerlink" title="课程评价"></a>课程评价</h2><p>边复习边写一下评价吧.. <br>教材: 写的挺好的, 从逻辑上很清晰, 而且挺详细用心的 <br>上课: 这学期主要是网课也没什么办法评价… <br>内容: 数学很多, 算是数学基础那一部分的综合, 广度比较高, 不过大多只是个简介</p>
+
           
         
       
@@ -1422,7 +1578,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-count">10</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
