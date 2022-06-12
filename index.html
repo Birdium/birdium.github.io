@@ -321,7 +321,7 @@
 <li>用什么插值? Polynomial</li>
 </ul>
 </li>
-<li>经典之拉格朗日插值. \<br>没啥好说的: 可证明唯一性; 误差分析 \<br>应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人=0个人 \<br>龙格现象: 边界的剧烈抖动</li>
+<li>经典之拉格朗日插值.<br>没啥好说的: 可证明唯一性; 误差分析<br>应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人=0个人<br>龙格现象: 边界的剧烈抖动</li>
 <li>切比雪夫插值多项式: 解决龙格现象<ul>
 <li>动机: 提高对插值误差的最大值的控制: $\frac{\prod_{i=1}^n(x-x_i)}{n!}f^{(n)}(c)$</li>
 <li>假设 $f: [-1, 1] \rightarrow \mathbb{R}$ \</li>
@@ -363,11 +363,11 @@
 <li>微积分: 最小化 $(Ax-b)^T(Ax-b)$, 求解梯度 $\Delta = 2A^TAx-2A^Tb = 0$.</li>
 <li>Gram-Schmidt: 消除已经存在的维度上分量. </li>
 </ol>
-<h2 id="内积空间于正交性"><a href="#内积空间于正交性" class="headerlink" title="内积空间于正交性"></a>内积空间于正交性</h2><hr>
+<h2 id="内积空间，正交性"><a href="#内积空间，正交性" class="headerlink" title="内积空间，正交性"></a>内积空间，正交性</h2><hr>
 <ol>
 <li>条件: 对称 线性 正定</li>
 <li>正交: $&lt;\phi_i, \phi_j&gt; = \begin{cases} C_i &amp; i = j \\ 0 &amp; i \neq j \end{cases}$</li>
-<li>Chebyshev多项式关于 $w(x) = \frac{1}{\sqrt{1-x^2}}$ 所定义的内积正交: \<br>$<f,g>_w = \int_{-1}^1 f(x) g(x) \frac{dx}{\sqrt{1-x^2}}$</li>
+<li>Chebyshev多项式关于 $w(x) = \frac{1}{\sqrt{1-x^2}}$ 所定义的内积正交:<br>$<f,g>_w = \int_{-1}^1 f(x) g(x) \frac{dx}{\sqrt{1-x^2}}$</li>
 <li>三角级数正交: </li>
 </ol>
 <h2 id="狐里叶变换"><a href="#狐里叶变换" class="headerlink" title="狐里叶变换"></a>狐里叶变换</h2><hr>
@@ -420,7 +420,7 @@
 <li>Gauss-Seidel: $(L+D)x=b-Ux$</li>
 <li>收敛性: $x_{k+1} = Ax_{k} + b$ <ul>
 <li>令 $x_*$ 为一个不动点</li>
-<li>$x_k-x_<em> = A^k(x_0-x_</em>)$</li>
+<li>有 $x_k-x_<em> = A^k(x_0-x_</em>)$</li>
 <li>收敛条件:<ul>
 <li>$A^k \rightarrow 0$</li>
 <li>$x_0 - x_*$ 存在于一个好的线性子空间里.   </li>
@@ -430,7 +430,29 @@
 </ul>
 </li>
 <li>Jacobi迭代的谱半径: $\rho(D^{-1}(L+U))$, 若满足严格对角占有, 可以证明$\rho &lt; 1$</li>
-<li>Moore-Penrose伪逆 $\overline x = (A^TA)^{-1}A^Tb$, $(A^TA)^{-1}A^T$ 是维尼.</li>
+<li>Moore-Penrose伪逆 $\overline x = (A^TA)^{-1}A^Tb$, $(A^TA)^{-1}A^T$ 是维尼.(前提: 列线性无关)</li>
+</ul>
+</li>
+<li>Richardson迭代:<ul>
+<li>目的: $A^{-1} = p(A)$ 的近似.</li>
+<li>等价地, $q(x) = 1-xp(x)$, 需要寻找 $q(0) = 1$, $q(x) \approx 0, \forall x &gt; 0$</li>
+<li>要解 $Ax=b$, 即找出 $x_* = p(A)b \in span(b, Ab, A^2b, \cdots)$</li>
+<li>迭代形式: $x_{k+1} = (I -\alpha A)x_k + \alpha b$</li>
+</ul>
+</li>
+</ol>
+<h2 id="矩阵与特征值"><a href="#矩阵与特征值" class="headerlink" title="矩阵与特征值"></a>矩阵与特征值</h2><ol>
+<li>正定/半正定 $\Leftrightarrow$ 特征值正/非负</li>
+<li>特征值的min-max刻画: 最大的特征值满足: $\lambda_n(A) = \max \frac{x^TAx}{x^Tx}$(换成min也可以, 只需要考虑谱分解)</li>
+<li>图相关矩阵: <ol>
+<li>A: 邻接矩阵, D: 度数矩阵, L = D-A: Laplacian</li>
+</ol>
+</li>
+<li>$cond_2(A) = ||A||_2 ||A^{-1}||_2 = \lambda_{max} / \lambda_{min}$</li>
+<li>Cayley-Hamilton:<ul>
+<li>$Ap(A) = I$</li>
+<li>$q(x) = 1 - xP(x)$, $q(A) = 0$</li>
+<li>如何近似 $q$? Richardson Iteration</li>
 </ul>
 </li>
 </ol>
