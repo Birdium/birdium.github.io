@@ -77,15 +77,15 @@
 
 
 
-<meta name="description" content="Three Easy Pieces: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析插值    插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人">
+<meta name="description" content="Three Easy Pieces: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析  插值  插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NumericalAnalysis">
 <meta property="og:url" content="http://birdium.github.io/NumericalAnalysis/index.html">
 <meta property="og:site_name" content="Birdium 的博客">
-<meta property="og:description" content="Three Easy Pieces: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析插值    插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人">
+<meta property="og:description" content="Three Easy Pieces: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析  插值  插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-12T05:02:20.000Z">
-<meta property="article:modified_time" content="2022-06-12T05:40:49.813Z">
+<meta property="article:modified_time" content="2022-06-12T06:48:59.055Z">
 <meta property="article:author" content="Birdium">
 <meta name="twitter:card" content="summary">
 
@@ -311,9 +311,9 @@
 <h2 id="方程求根"><a href="#方程求根" class="headerlink" title="方程求根"></a>方程求根</h2><ol>
 <li>二分法 猫都会做</li>
 <li>不动点迭代: 需要目标点导数比较小</li>
-<li>根的敏感性与误差分析<h2 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h2></li>
+<li>根的敏感性与误差分析</li>
 </ol>
-<hr>
+<h2 id="插值"><a href="#插值" class="headerlink" title="插值"></a>插值</h2><hr>
 <ol>
 <li>插值三问: \<ul>
 <li>插值是为什么? <del>好看(即答)</del> 连续性</li>
@@ -321,6 +321,20 @@
 </ul>
 </li>
 <li>经典之拉格朗日插值. <br>没啥好说的: 可证明唯一性; 误差分析 <br>应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人&#x3D;0个人 <br>龙格现象: 边界的剧烈抖动</li>
+<li>切比雪夫插值多项式: 解决龙格现象<ul>
+<li>动机: 提高对插值误差的最大值的控制: $\frac{\prod_{i&#x3D;1}^n(x-x_i)}{n!}f^{(n)}(c)$</li>
+<li>假设 $f: [-1, 1] \rightarrow \mathbb{R}$ \</li>
+<li>目标: 选取 $x_1, x_2, \cdots, x_n$ 最小化 $|| \prod(x-x_i) ||_{\infty}$</li>
+<li>$x_i &#x3D; \cos{\frac{(2i-1)\pi}{2n} }$</li>
+<li>Chebyshev插值多项式 $T_n(x):&#x3D;2^{n-1}(x-x_1)(x-x_2)\cdots(x-x_n)$</li>
+<li>等价于 $T_n(x):&#x3D; \cos{(n \arccos x)}$</li>
+<li>递归关系: $T_{n+1}(x) &#x3D; 2xT_n(x) - T_{n-1}(x)$</li>
+<li>可以证明的是, 这是令误差最小的插值方式</li>
+</ul>
+</li>
+</ol>
+<h2 id="逼近"><a href="#逼近" class="headerlink" title="逼近"></a>逼近</h2><hr>
+<ol>
 <li>Weierstrass定理: 连续函数可以任意地被多项式逼近</li>
 <li>Bernstein Polynomial:<ul>
 <li>给定: $f: [0,1] \rightarrow R$</li>
@@ -329,8 +343,93 @@
 <li>$E[k]&#x3D;nx$, $Var[K]&#x3D;nx(1-x), Pr[K&#x3D;i] &#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
 <li>Bernstein Poly的一组基: $b_{n,i}&#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
 <li>$\displaystyle \lim_{n\rightarrow \infty}Pr[|\frac K n - x| &gt; \delta]$ 对所有 $x$ 一致成立 </li>
-<li>Bernstein Poly的本体: $E[f(\frac K n)] &#x3D; \sum_{i&#x3D;0} f(\frac i n)b_{n, i}(x)$ </li>
-<li></li>
+<li>Bernstein Poly的本体: $E[f(\frac K n)] &#x3D; \sum_{i&#x3D;0} f(\frac i n)b_{n, i}(x)$ <ul>
+<li>个人理解: 等距采样, 加权平均(权是一个分布多项式函数)</li>
+</ul>
+</li>
+<li>证明: 拆成两部分</li>
+</ul>
+</li>
+</ol>
+<h2 id="范数"><a href="#范数" class="headerlink" title="范数"></a>范数</h2><hr>
+<ol>
+<li>一般向量范数: $\displaystyle ||x||_k &#x3D; (\sum{|x_i|^k})^{\frac1 k}$</li>
+<li>函数范数: $||f||_{\infty} &#x3D; \sup |f|$, $||f||_2 &#x3D; (\int |f(x)|^k dx)^{\frac 1 k}$</li>
+</ol>
+<h2 id="最小二乘法"><a href="#最小二乘法" class="headerlink" title="最小二乘法"></a>最小二乘法</h2><hr>
+<ol>
+<li>几何: 简单投影 $A^TA\overline{x} &#x3D; A^Tb$</li>
+<li>微积分: 最小化 $(Ax-b)^T(Ax-b)$, 求解梯度 $\Delta &#x3D; 2A^TAx-2A^Tb &#x3D; 0$.</li>
+<li>Gram-Schmidt: 消除已经存在的维度上分量.</li>
+</ol>
+<h2 id="内积空间于正交性"><a href="#内积空间于正交性" class="headerlink" title="内积空间于正交性"></a>内积空间于正交性</h2><hr>
+<ol>
+<li>条件: 对称 线性 正定</li>
+<li>正交: $&lt;\phi_i, \phi_j&gt; &#x3D; \begin{cases} C_i &amp; i &#x3D; j \ 0 &amp; i \neq j \end{cases}$</li>
+<li>Chebyshev多项式关于 $w(x) &#x3D; \frac{1}{\sqrt{1-x^2}}$ 所定义的内积正交: <br>$&lt;f,g&gt;<em>w &#x3D; \int</em>{-1}^1 f(x) g(x) \frac{dx}{\sqrt{1-x^2}}$</li>
+<li>三角级数正交:</li>
+</ol>
+<h2 id="狐里叶变换"><a href="#狐里叶变换" class="headerlink" title="狐里叶变换"></a>狐里叶变换</h2><hr>
+<ol>
+<li>DFT FFT IFFT</li>
+<li>动机: 多项式乘法: $p(x) * q(x)$ <ol>
+<li>给定 $p(x), q(x)$ 的系数</li>
+<li>令 $m \geqslant 2n+1$, 选定系数 $x_0, x_1, \cdots, x_m$, 计算 $p,q $ 在上面的点值. </li>
+<li>计算 $r(x_i) &#x3D; p(x_i)q(x_i)$</li>
+<li>对 $r$ 插值, 还原出 $r$ 的系数</li>
+</ol>
+</li>
+<li>愿景: 2, 4 都能做到 $O(n\log n)$</li>
+<li>DFT: <ol>
+<li>选取 $x_i$ 为 $m+1$ 次单位根. </li>
+<li>逆变换: 插值</li>
+<li>但是, 还是很慢,,,</li>
+</ol>
+</li>
+<li>FFT: <ol>
+<li>引入分治, 将 $p(x)$ 分成奇数和偶数:<ul>
+<li>$E(z) &#x3D; a_0 + a_2z + \cdots$</li>
+<li>$O(z) &#x3D; a_1 + a_3z + \cdots$</li>
+<li>$p(z) &#x3D; E(z^2) + zO(z^2)$</li>
+</ul>
+</li>
+<li>IFFT:<ul>
+<li>DFT, FFT: $p(\omega^l)&#x3D; \frac1{\sqrt{n+1}}\sum a_j \omega_{lj}$</li>
+<li>IFFT: $a_l &#x3D; \sum p(\omega^j) \omega^{-lj}$, 和DFT唯一区别是 $\omega \rightarrow \omega^{-1}$</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="解方程组之迭代Method"><a href="#解方程组之迭代Method" class="headerlink" title="解方程组之迭代Method"></a>解方程组之迭代Method</h2><ol>
+<li>线性方程组的数值稳定性: $Ax &#x3D; b$<ul>
+<li>定义条件数 $cond(A) &#x3D; \frac{x相对误差}{b相对误差}$</li>
+<li>$cond(A) &#x3D; \max{\frac{||A^{-1}e||&#x2F;||A^{-1}b||}{||e|| &#x2F; ||b||}} &#x3D; \max{\frac{||A^{-1}e||}{||e||}} \max{\frac{||Ax||}{||x||}}$</li>
+<li>引入矩阵的算子范数 $||A||:&#x3D; \max{\frac{||Ax||}{||x||}}$<ul>
+<li>特别地有: $||A||_2:&#x3D; \max{\frac{||Ax||_2}{||x||<em>2}} &#x3D; \sqrt{\lambda</em>{max}(A^TA)}$</li>
+</ul>
+</li>
+<li>$cond(A) &#x3D; ||A|| \cdot ||A^{-1}||$</li>
+</ul>
+</li>
+<li>高斯消元法: 朴素的 $O(n^3)$ 做法</li>
+<li>Jacobi迭代:  <ul>
+<li>收敛的充分条件: 严格对角占优(对角线上元素超过行内其他元素)</li>
+<li>不动点迭代形式: $A&#x3D;L+D+U$, $Ax&#x3D;b$ 可以写为 $x&#x3D;D^{-1}(b-(L+U)x)$</li>
+<li>Gauss-Seidel: $(L+D)x&#x3D;b-Ux$</li>
+<li>收敛性: $x_{k+1} &#x3D; Ax_{k} + b$ <ul>
+<li>令 $x_*$ 为一个不动点</li>
+<li>$x_k-x_* &#x3D; A^k(x_0-x_*)$</li>
+<li>收敛条件:<ul>
+<li>$A^k \rightarrow 0$</li>
+<li>$x_0 - x_*$ 存在于一个好的线性子空间里.</li>
+</ul>
+</li>
+<li>谱半径: 最大的{特征值的绝对值}</li>
+</ul>
+</li>
+<li>Jacobi迭代的谱半径: $\rho(D^{-1}(L+U))$, 若满足严格对角占有, 可以证明$\rho &lt; 1$</li>
+<li>Moore-Penrose伪逆 $\overline x &#x3D; (A^TA)^{-1}A^Tb$, $(A^TA)^{-1}A^T$ 是维尼.</li>
 </ul>
 </li>
 </ol>
@@ -480,7 +579,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9"><span class="nav-number">1.</span> <span class="nav-text">方程求根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">插值</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9"><span class="nav-number">1.</span> <span class="nav-text">方程求根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">插值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BC%E8%BF%91"><span class="nav-number">3.</span> <span class="nav-text">逼近</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%E4%BA%8E%E6%AD%A3%E4%BA%A4%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">内积空间于正交性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%90%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">7.</span> <span class="nav-text">狐里叶变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%96%B9%E7%A8%8B%E7%BB%84%E4%B9%8B%E8%BF%AD%E4%BB%A3Method"><span class="nav-number">8.</span> <span class="nav-text">解方程组之迭代Method</span></a></li></ol></div>
             
 
           </div>
