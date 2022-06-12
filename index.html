@@ -438,6 +438,25 @@
 <li>等价地, $q(x) = 1-xp(x)$, 需要寻找 $q(0) = 1$, $q(x) \approx 0, \forall x &gt; 0$</li>
 <li>要解 $Ax=b$, 即找出 $x_* = p(A)b \in span(b, Ab, A^2b, \cdots)$</li>
 <li>迭代形式: $x_{k+1} = (I -\alpha A)x_k + \alpha b$</li>
+<li>误差 $e_k = x_k - x_*$ 满足 $e^k = (I-\alpha A)e_{k-1} = (I-\alpha A)^k e_0$</li>
+<li>收敛性: 当且仅当 $\rho(I-\alpha A) = |1-\alpha\lambda_{max}| &lt; 1$ </li>
+<li>这里的 $x_k$ 处于 $span(b, Ab, A^2b, \cdots, A^{k-1}b)$ 中(Krylov子空间)</li>
+<li>Chebyshev迭代: 每一轮选取不同的 $\alpha$, 最小化 $||\prod_i (I-\alpha_i A)||$, 使用了Chebyshev多项式. </li>
+<li>内积: 给定正定矩阵 $A$, 定义内积 $ { &lt; x, y &gt; }_A := x^TAy $.<ul>
+<li>内积为0, 则称 x,y 关于 A 共轭.</li>
+<li>共轭向量一定线性无关.</li>
+</ul>
+</li>
+<li>考虑不断增大的Krylov子空间序列, 设 $x_i$ 为第 i 个子空间中最逼近 $x_*$ 的元素.</li>
+<li>引理 $v_i := x_i - x_{i-1}$, 则  \{v_i\} 两两共轭. (注意到$Ax_j - b$ 必然于 $K_j$ 正交, 因此 $Av_j = A(x_j - x_{j-1}) \in K_{j-1}^{不会打的符号}$, 而 $v_i$ \in K_i \in K_{j-1}, 因此这两个向量共轭) </li>
+<li>推论 $K_i = span(v_1, v_2, \cdots, v_i)$</li>
+</ul>
+</li>
+<li>幂迭代(计算特征值)<ul>
+<li>考虑任意向量的特征值分解, 可以找出最大特征值和对应的占优向量,</li>
+<li>迭代可能造成浮点数溢出, 一般每次迭代选择进行归一化.</li>
+<li>迭代得到了一个近似的特征向量方向, 求解最小二乘法 $||Ax-\lambda x||_2^2$, 法线方程为 $\lambda = \frac{x^TAx}{x^Tx}$, Rayleigh Quotient.</li>
+<li>定理, 如果上述目标函数误差小于 $\epsilon$, 则特征值求解误差同样小于 $\epsilon$. </li>
 </ul>
 </li>
 </ol>
@@ -454,6 +473,30 @@
 <li>$q(x) = 1 - xP(x)$, $q(A) = 0$</li>
 <li>如何近似 $q$? Richardson Iteration</li>
 </ul>
+</li>
+<li>奇异值分解SVD (这里好像换了个名字)</li>
+</ol>
+<h2 id="随机游走-Random-Walk"><a href="#随机游走-Random-Walk" class="headerlink" title="随机游走 Random Walk"></a>随机游走 Random Walk</h2><ol>
+<li>定义: 从一个点出发, 每一次都随机走到一个邻居上, 不断重复.</li>
+<li>长期表现会怎样呢?<ol>
+<li>重复t步后, 当前顶点是某个u的概率是多少?</li>
+<li>是否存在稳态分布?</li>
+<li>多久才会收敛? (mixing time)</li>
+<li>从s出发多久才到t? (hitting time)</li>
+<li>多久才能遍历每个节点各一次? (cover time)<br>1,2,3都可以通过纯概率的方法去解决, 4,5见电阻网络.</li>
+</ol>
+</li>
+<li>马尔可夫链: <del>past is in the past</del> 一切之和当前状态有关.<ol>
+<li>转移矩阵描述: $\vec{p}_{t+1} = P\cdot \vec{p}_{t}$</li>
+<li>对于有限Markov Chain, 若对应的有向图是强连通的, 那说明它是不可约的.</li>
+<li>如果Markov Chain中每个状态都是非周期的, 那么这个Chain是非周期的.</li>
+<li>引理: 对于不可约, 非周期Markov Chain, 一定存在足够大的常数, $P^t_{i,j} &gt; 0, \forall t \geqslant T$</li>
+<li>稳态: $\vec{\pi} = \vec{\pi}\cdot P$.</li>
+<li>回归时间: 从 $i$ 出发, 第一次返回到 $i$ 的时间 $H_i$. $h_i = E[H_i]$</li>
+<li>Markov基本定理: 有限, 非周期, 不可约的Markov链, 必然收敛到一个唯一的稳态分布, $\pi(i) = \frac 1 h_i$.</li>
+<li>例子: PageRank</li>
+<li>Markov相关内容见<a target="_blank" rel="noopener" href="https://box.nju.edu.cn/d/62bf772ba48d4a598311/files/?p=%2F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%2FFinite%20Markov%20Chains%20and%20Algorithmic%20Applications%20(Olle%20H%C3%A4ggstr%C3%B6m">本书</a>%20(z-lib.org).pdf)</li>
+</ol>
 </li>
 </ol>
 
