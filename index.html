@@ -531,7 +531,35 @@
 </li>
 </ol>
 <h2 id="电阻与电路网络"><a href="#电阻与电路网络" class="headerlink" title="电阻与电路网络"></a>电阻与电路网络</h2><ol>
-<li>为什么我会在这复习物理QAQ</li>
+<li><del>为什么我会在这复习物理QAQ</del> 解决之前的留下的 Hitting&amp;Cover Time 问题.</li>
+<li>基本概念<ol>
+<li>基尔霍夫定律: in=out</li>
+<li>欧姆定律: $\Delta \phi = ir$ </li>
+<li>电阻 $r_e$, 电导率 $w_e = \frac1{r_e}$</li>
+<li>$b_v$ 表示外界流到 $v$ 的电流</li>
+</ol>
+</li>
+<li>若 $w_{uv} = 1$(电阻为1), 求解$\vec{b} = L \vec{\phi}$ (That’s All We Want)</li>
+<li>$L = BWB^T$, $b= L\phi = BWB^T\phi = B\vec{i}$</li>
+<li>若存在满足条件的解, 则 $b = L\phi \perp \vec{1}$ (外部流出和流入的相等) (其实这是个充要条件)</li>
+<li>$L^{+} = \sum_{i=2}^n \frac1{\lambda_i}v_iv_i^T$ 是维尼. 全体解集是 $\{L^+\vec{b} + c \vec{1} \}$, 若固定一点电势, 有唯一解.</li>
+<li>$R_{eff}$ 等效电阻为电势差. $R_{eff}(s,t) = b^T_{st}L^+b_{st}$, $b_{st}(s) = 1, (t=-1)$</li>
+<li>Thompson’s Principle: $R_{eff}(s,t) \leqslant \epsilon(\vec{g})$, 单位电流最小化能量.</li>
+<li>Commute Time: $C_{s,t} = 2mR_{eff}(s,t)$, $m = |E(G)|$<ol>
+<li>推论: $C_{u,v} \leqslant 2m$</li>
+<li>连通图遍历时间最多为 $2m(n-1)$</li>
+</ol>
+</li>
+</ol>
+<ul>
+<li>有种感觉越往下写越详细了,,, 虽然并不是我的本意, 所以————</li>
+</ul>
+<h2 id="线性规划-凸优化"><a href="#线性规划-凸优化" class="headerlink" title="线性规划+凸优化"></a>线性规划+凸优化</h2><p>上学期凸优化覆盖了这些了(PS:真的吗), 摸了</p>
+<h2 id="课程评价"><a href="#课程评价" class="headerlink" title="课程评价"></a>课程评价</h2><ol>
+<li>难度: 魔改的比较猛烈, 所以还是有一定难度的</li>
+<li>有趣程度: 除了线性规划+凸优化之外, 其他都算比较新的内容, 我觉得随机游走部分比较有意思</li>
+<li>其他: 可能是第一年开课, 作业和讲课内容还有些脱节, 完成作业比较考验数理基础</li>
+<li>大概就是这么多了, 今晚研究下习题, 明天就进入算法了(四天分给除了数理逻辑以外四门www)</li>
 </ol>
 
           
