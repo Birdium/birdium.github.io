@@ -493,11 +493,45 @@
 <li>引理: 对于不可约, 非周期Markov Chain, 一定存在足够大的常数, $P^t_{i,j} &gt; 0, \forall t \geqslant T$</li>
 <li>稳态: $\vec{\pi} = \vec{\pi}\cdot P$.</li>
 <li>回归时间: 从 $i$ 出发, 第一次返回到 $i$ 的时间 $H_i$. $h_i = E[H_i]$</li>
-<li>Markov基本定理: 有限, 非周期, 不可约的Markov链, 必然收敛到一个唯一的稳态分布, $\pi(i) = \frac 1 h_i$.</li>
+<li>Markov基本定理: 有限, 非周期, 不可约的Markov链, 必然收敛到一个唯一的稳态分布, $\pi(i) = \frac 1 h_i$. (怎么证,,,,)</li>
 <li>例子: PageRank</li>
 <li>Markov相关内容详细证明见<a target="_blank" rel="noopener" href="https://box.nju.edu.cn/d/62bf772ba48d4a598311/files/?p=%2F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%2FFinite%20Markov%20Chains%20and%20Algorithmic%20Applications.pdf">本书</a></li>
 </ol>
 </li>
+<li>无向图上的随机游走<ol>
+<li>$p_{t+1}(v) = \sum_{u:uv\in E}p_t(u)\cdot \frac1{deg(u)} $</li>
+<li>$p_{t+1} = (AD^{-1}p_t)$, $p_t = (AD^{-1})^t p_0$</li>
+<li>稳态分布: $\vec{\pi} = \frac{\vec{d}}{2m}$, 是 $AD^{-1}$ 的一个右特征向量, 特征值为1.</li>
+<li>无向图上的马尔可夫基本定理: 对于任意有限的, 连通的, 非二分图, 不管从什么养的 $p_0$ 开始, 总有 $\vec{p_t} \rightarrow \vec{\pi}$.</li>
+<li>惰性随机游走: $p_t = \frac12(I + AD^{-1})^t p_0$ (对二分图有效)</li>
+<li>$W$ 与 $D^{-\frac12}WD^{\frac12} = D^{-\frac12}AD^{-\frac12} = \mathcal{A}$ 相似, 拥有相同的特征值.、<ol>
+<li>对于d正则图比较特殊, $W = \frac 1 d A= I- \frac 1 d L$, 可以将 $p_0$ 展开, 从大到小排序的特征值$\alpha_1 = 1$, 特征值位于 $[-1, 1]$ 中, $a_n = -1$ 当且仅当图是二分图.</li>
+<li>对联通的非二分图, $p_t \rightarrow c_1v_1 = \frac 1 n \vec{1} = \vec{\pi}$</li>
+<li>对惰性的随机游走, 特征值发生了 $[-1,1] \rightarrow [0,1]$ 的保持相对距离的映射.</li>
+</ol>
+</li>
+<li>混合时间:<ul>
+<li>定义谱间隔 $\lambda = \min{1-\alpha_2, 1-|\alpha_n|}$</li>
+<li>定理: $\epsilon-$ 混合时间.  </li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="图与代数"><a href="#图与代数" class="headerlink" title="图与代数"></a>图与代数</h2><ol>
+<li>二分图邻接矩阵: $A$ 特征值关于 $x=0$ 对称.</li>
+<li>图邻接矩阵最大特征值 $deg_{avg}(G) \leqslant \lambda_{max}\leqslant deg_{max}(G)$</li>
+<li>Laplacian Matrix 的一个特征值是 $0$, 对应特征向量是 $\vec{1}$, 是半正定的.</li>
+<li>当且仅当特征值 $0$ 的重数为1时, $G$ 连通. $x^TLx = \sum(x_i-x_j)^2$</li>
+<li>Perron-Frobenius定理: 对于非负, 不可约, 非周期的矩阵 <ol>
+<li>最大特征值重数为1</li>
+<li>对应特征向量中, 每个维度都是非0且同号的.</li>
+<li>$|\lambda_i| &lt; \lambda_1$</li>
+</ol>
+</li>
+</ol>
+<h2 id="电阻与电路网络"><a href="#电阻与电路网络" class="headerlink" title="电阻与电路网络"></a>电阻与电路网络</h2><ol>
+<li>为什么我会在这复习物理QAQ</li>
 </ol>
 
           

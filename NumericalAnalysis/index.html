@@ -85,7 +85,7 @@
 <meta property="og:description" content="Three Easy Pieces: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析  插值  插值三问: 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值.没啥好说的: 可证明唯一性; 误差分析应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人&#x3D;0个人">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-12T05:02:20.000Z">
-<meta property="article:modified_time" content="2022-06-12T10:54:22.324Z">
+<meta property="article:modified_time" content="2022-06-12T11:33:37.296Z">
 <meta property="article:author" content="Birdium">
 <meta name="twitter:card" content="summary">
 
@@ -492,11 +492,45 @@
 <li>引理: 对于不可约, 非周期Markov Chain, 一定存在足够大的常数, $P^t_{i,j} &gt; 0, \forall t \geqslant T$</li>
 <li>稳态: $\vec{\pi} = \vec{\pi}\cdot P$.</li>
 <li>回归时间: 从 $i$ 出发, 第一次返回到 $i$ 的时间 $H_i$. $h_i = E[H_i]$</li>
-<li>Markov基本定理: 有限, 非周期, 不可约的Markov链, 必然收敛到一个唯一的稳态分布, $\pi(i) = \frac 1 h_i$.</li>
+<li>Markov基本定理: 有限, 非周期, 不可约的Markov链, 必然收敛到一个唯一的稳态分布, $\pi(i) = \frac 1 h_i$. (怎么证,,,,)</li>
 <li>例子: PageRank</li>
 <li>Markov相关内容详细证明见<a target="_blank" rel="noopener" href="https://box.nju.edu.cn/d/62bf772ba48d4a598311/files/?p=%2F%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95%2FFinite%20Markov%20Chains%20and%20Algorithmic%20Applications.pdf">本书</a></li>
 </ol>
 </li>
+<li>无向图上的随机游走<ol>
+<li>$p_{t+1}(v) = \sum_{u:uv\in E}p_t(u)\cdot \frac1{deg(u)} $</li>
+<li>$p_{t+1} = (AD^{-1}p_t)$, $p_t = (AD^{-1})^t p_0$</li>
+<li>稳态分布: $\vec{\pi} = \frac{\vec{d}}{2m}$, 是 $AD^{-1}$ 的一个右特征向量, 特征值为1.</li>
+<li>无向图上的马尔可夫基本定理: 对于任意有限的, 连通的, 非二分图, 不管从什么养的 $p_0$ 开始, 总有 $\vec{p_t} \rightarrow \vec{\pi}$.</li>
+<li>惰性随机游走: $p_t = \frac12(I + AD^{-1})^t p_0$ (对二分图有效)</li>
+<li>$W$ 与 $D^{-\frac12}WD^{\frac12} = D^{-\frac12}AD^{-\frac12} = \mathcal{A}$ 相似, 拥有相同的特征值.、<ol>
+<li>对于d正则图比较特殊, $W = \frac 1 d A= I- \frac 1 d L$, 可以将 $p_0$ 展开, 从大到小排序的特征值$\alpha_1 = 1$, 特征值位于 $[-1, 1]$ 中, $a_n = -1$ 当且仅当图是二分图.</li>
+<li>对联通的非二分图, $p_t \rightarrow c_1v_1 = \frac 1 n \vec{1} = \vec{\pi}$</li>
+<li>对惰性的随机游走, 特征值发生了 $[-1,1] \rightarrow [0,1]$ 的保持相对距离的映射.</li>
+</ol>
+</li>
+<li>混合时间:<ul>
+<li>定义谱间隔 $\lambda = \min{1-\alpha_2, 1-|\alpha_n|}$</li>
+<li>定理: $\epsilon-$ 混合时间.  </li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="图与代数"><a href="#图与代数" class="headerlink" title="图与代数"></a>图与代数</h2><ol>
+<li>二分图邻接矩阵: $A$ 特征值关于 $x=0$ 对称.</li>
+<li>图邻接矩阵最大特征值 $deg_{avg}(G) \leqslant \lambda_{max}\leqslant deg_{max}(G)$</li>
+<li>Laplacian Matrix 的一个特征值是 $0$, 对应特征向量是 $\vec{1}$, 是半正定的.</li>
+<li>当且仅当特征值 $0$ 的重数为1时, $G$ 连通. $x^TLx = \sum(x_i-x_j)^2$</li>
+<li>Perron-Frobenius定理: 对于非负, 不可约, 非周期的矩阵 <ol>
+<li>最大特征值重数为1</li>
+<li>对应特征向量中, 每个维度都是非0且同号的.</li>
+<li>$|\lambda_i| &lt; \lambda_1$</li>
+</ol>
+</li>
+</ol>
+<h2 id="电阻与电路网络"><a href="#电阻与电路网络" class="headerlink" title="电阻与电路网络"></a>电阻与电路网络</h2><ol>
+<li>为什么我会在这复习物理QAQ</li>
 </ol>
 
       
@@ -644,7 +678,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9"><span class="nav-number">1.</span> <span class="nav-text">方程求根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">插值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BC%E8%BF%91"><span class="nav-number">3.</span> <span class="nav-text">逼近</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%EF%BC%8C%E6%AD%A3%E4%BA%A4%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">内积空间，正交性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%90%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">7.</span> <span class="nav-text">狐里叶变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%96%B9%E7%A8%8B%E7%BB%84%E4%B9%8B%E8%BF%AD%E4%BB%A3Method"><span class="nav-number">8.</span> <span class="nav-text">解方程组之迭代Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%89%B9%E5%BE%81%E5%80%BC"><span class="nav-number">9.</span> <span class="nav-text">矩阵与特征值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0-Random-Walk"><span class="nav-number">10.</span> <span class="nav-text">随机游走 Random Walk</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%96%B9%E7%A8%8B%E6%B1%82%E6%A0%B9"><span class="nav-number">1.</span> <span class="nav-text">方程求根</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%8F%92%E5%80%BC"><span class="nav-number">2.</span> <span class="nav-text">插值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BC%E8%BF%91"><span class="nav-number">3.</span> <span class="nav-text">逼近</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%8C%83%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">范数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%80%E5%B0%8F%E4%BA%8C%E4%B9%98%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">最小二乘法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%85%E7%A7%AF%E7%A9%BA%E9%97%B4%EF%BC%8C%E6%AD%A3%E4%BA%A4%E6%80%A7"><span class="nav-number">6.</span> <span class="nav-text">内积空间，正交性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%8B%90%E9%87%8C%E5%8F%B6%E5%8F%98%E6%8D%A2"><span class="nav-number">7.</span> <span class="nav-text">狐里叶变换</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%A3%E6%96%B9%E7%A8%8B%E7%BB%84%E4%B9%8B%E8%BF%AD%E4%BB%A3Method"><span class="nav-number">8.</span> <span class="nav-text">解方程组之迭代Method</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9F%A9%E9%98%B5%E4%B8%8E%E7%89%B9%E5%BE%81%E5%80%BC"><span class="nav-number">9.</span> <span class="nav-text">矩阵与特征值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%B8%B8%E8%B5%B0-Random-Walk"><span class="nav-number">10.</span> <span class="nav-text">随机游走 Random Walk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E4%B8%8E%E4%BB%A3%E6%95%B0"><span class="nav-number">11.</span> <span class="nav-text">图与代数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%B5%E9%98%BB%E4%B8%8E%E7%94%B5%E8%B7%AF%E7%BD%91%E7%BB%9C"><span class="nav-number">12.</span> <span class="nav-text">电阻与电路网络</span></a></li></ol></div>
             
 
           </div>
