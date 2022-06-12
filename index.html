@@ -308,7 +308,7 @@
       
         
           
-            <p>三大部分: <strong>插值与拟合</strong>, <strong>特征值与随机游走</strong>, <strong>最优化与线性规划</strong></p>
+            <p>Three Easy Pieces: <strong>插值与拟合</strong>, <strong>特征值与随机游走</strong>, <strong>最优化与线性规划</strong></p>
 <h2 id="方程求根"><a href="#方程求根" class="headerlink" title="方程求根"></a>方程求根</h2><ol>
 <li>二分法 猫都会做</li>
 <li>不动点迭代: 需要目标点导数比较小</li>
@@ -326,7 +326,7 @@
 <li>Bernstein Polynomial:<ul>
 <li>给定: $f: [0,1] \rightarrow R$</li>
 <li>目标: 构造多项式 $p$, 使得在 $x \in [0,1]$ 这一点上, $p(x)$ 尽可能接近 $f(x)$.</li>
-<li>$K ~ B(n, x)$</li>
+<li>$K \sim B(n, x)$</li>
 <li>$E[k]&#x3D;nx$, $Var[K]&#x3D;nx(1-x), Pr[K&#x3D;i] &#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
 <li>Bernstein Poly的一组基: $b_{n,i}&#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
 <li>$\displaystyle \lim_{n\rightarrow \infty}Pr[|\frac K n - x| &gt; \delta]$ 对所有 $x$ 一致成立 </li>

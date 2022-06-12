@@ -77,15 +77,15 @@
 
 
 
-<meta name="description" content="三大部分: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析插值    插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人&#x3D;0个人 龙格现">
+<meta name="description" content="Three Easy Pieces: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析插值    插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人">
 <meta property="og:type" content="article">
 <meta property="og:title" content="NumericalAnalysis">
 <meta property="og:url" content="http://birdium.github.io/NumericalAnalysis/index.html">
 <meta property="og:site_name" content="Birdium 的博客">
-<meta property="og:description" content="三大部分: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析插值    插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人&#x3D;0个人 龙格现">
+<meta property="og:description" content="Three Easy Pieces: 插值与拟合, 特征值与随机游走, 最优化与线性规划 方程求根 二分法 猫都会做 不动点迭代: 需要目标点导数比较小 根的敏感性与误差分析插值    插值三问: \ 插值是为什么? 好看(即答) 连续性 用什么插值? Polynomial   经典之拉格朗日插值. 没啥好说的: 可证明唯一性; 误差分析 应用: 分享秘密: 6个人合体:还原出目标多项式; 5个人">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-06-12T05:02:20.000Z">
-<meta property="article:modified_time" content="2022-06-12T05:31:11.297Z">
+<meta property="article:modified_time" content="2022-06-12T05:40:49.813Z">
 <meta property="article:author" content="Birdium">
 <meta name="twitter:card" content="summary">
 
@@ -307,7 +307,7 @@
       
 
       
-        <p>三大部分: <strong>插值与拟合</strong>, <strong>特征值与随机游走</strong>, <strong>最优化与线性规划</strong></p>
+        <p>Three Easy Pieces: <strong>插值与拟合</strong>, <strong>特征值与随机游走</strong>, <strong>最优化与线性规划</strong></p>
 <h2 id="方程求根"><a href="#方程求根" class="headerlink" title="方程求根"></a>方程求根</h2><ol>
 <li>二分法 猫都会做</li>
 <li>不动点迭代: 需要目标点导数比较小</li>
@@ -325,7 +325,7 @@
 <li>Bernstein Polynomial:<ul>
 <li>给定: $f: [0,1] \rightarrow R$</li>
 <li>目标: 构造多项式 $p$, 使得在 $x \in [0,1]$ 这一点上, $p(x)$ 尽可能接近 $f(x)$.</li>
-<li>$K ~ B(n, x)$</li>
+<li>$K \sim B(n, x)$</li>
 <li>$E[k]&#x3D;nx$, $Var[K]&#x3D;nx(1-x), Pr[K&#x3D;i] &#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
 <li>Bernstein Poly的一组基: $b_{n,i}&#x3D; {n\choose i} x^i(1-x)^{n-i}$</li>
 <li>$\displaystyle \lim_{n\rightarrow \infty}Pr[|\frac K n - x| &gt; \delta]$ 对所有 $x$ 一致成立 </li>
