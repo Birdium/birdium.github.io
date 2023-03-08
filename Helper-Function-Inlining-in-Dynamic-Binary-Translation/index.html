@@ -77,15 +77,15 @@
 
 
 
-<meta name="description" content="Hello, World!Good Bye, Cruel World!">
+<meta name="description" content="论文链接: http:&#x2F;&#x2F;cobweb.cs.uga.edu&#x2F;~wenwen&#x2F;papers&#x2F;cc21.pdf Abstract动态二进制翻译(DBT)是许多重要应用的基石。在DBT中，Helper Function为系统的构建带来了很大的便利，但与此同时也引入了不小的开销。本文作者提出了一种将Helper Function内联化的方法。 …省略 DBTHelper Functions不同指令集下的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello, World!">
-<meta property="og:url" content="http://birdium.github.io/Hello-World/Hello-World/index.html">
+<meta property="og:title" content="Helper Function Inlining in Dynamic Binary Translation">
+<meta property="og:url" content="http://birdium.github.io/Helper-Function-Inlining-in-Dynamic-Binary-Translation/index.html">
 <meta property="og:site_name" content="Birdium 的博客">
-<meta property="og:description" content="Hello, World!Good Bye, Cruel World!">
+<meta property="og:description" content="论文链接: http:&#x2F;&#x2F;cobweb.cs.uga.edu&#x2F;~wenwen&#x2F;papers&#x2F;cc21.pdf Abstract动态二进制翻译(DBT)是许多重要应用的基石。在DBT中，Helper Function为系统的构建带来了很大的便利，但与此同时也引入了不小的开销。本文作者提出了一种将Helper Function内联化的方法。 …省略 DBTHelper Functions不同指令集下的">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-04-25T06:54:51.000Z">
-<meta property="article:modified_time" content="2023-02-28T12:26:09.051Z">
+<meta property="article:published_time" content="2023-03-06T14:06:47.000Z">
+<meta property="article:modified_time" content="2023-03-08T07:47:19.221Z">
 <meta property="article:author" content="Birdium">
 <meta name="twitter:card" content="summary">
 
@@ -117,13 +117,13 @@
 
 
 
-  <link rel="canonical" href="http://birdium.github.io/Hello-World/Hello-World/"/>
+  <link rel="canonical" href="http://birdium.github.io/Helper-Function-Inlining-in-Dynamic-Binary-Translation/"/>
 
 
 
 
 
-  <title>Hello, World! | Birdium 的博客</title>
+  <title>Helper Function Inlining in Dynamic Binary Translation | Birdium 的博客</title>
   
 
 
@@ -240,7 +240,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://birdium.github.io/Hello-World/Hello-World/">
+    <link itemprop="mainEntityOfPage" href="http://birdium.github.io/Helper-Function-Inlining-in-Dynamic-Binary-Translation/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="">
@@ -257,7 +257,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello, World!</h1>
+          <h1 class="post-title" itemprop="name headline">Helper Function Inlining in Dynamic Binary Translation</h1>
         
 
         <div class="post-meta">
@@ -269,8 +269,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2022-04-25T14:54:51+08:00">
-                2022-04-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-03-06T22:06:47+08:00">
+                2023-03-06
               </time>
             
 
@@ -307,7 +307,22 @@
       
 
       
-        <h5 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello, World!"></a>Hello, World!</h5><p>Good Bye, Cruel World!</p>
+        <p>论文链接: <a target="_blank" rel="noopener" href="http://cobweb.cs.uga.edu/~wenwen/papers/cc21.pdf">http://cobweb.cs.uga.edu/~wenwen/papers/cc21.pdf</a></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>动态二进制翻译(DBT)是许多重要应用的基石。在DBT中，Helper Function为系统的构建带来了很大的便利，但与此同时也引入了不小的开销。本文作者提出了一种将Helper Function内联化的方法。</p>
+<p>…省略</p>
+<h2 id="DBT"><a href="#DBT" class="headerlink" title="DBT"></a>DBT</h2><h2 id="Helper-Functions"><a href="#Helper-Functions" class="headerlink" title="Helper Functions"></a>Helper Functions</h2><p>不同指令集下的指令看似功能相似，实际上可能包含完全不同的语义，这就给DBT工作带来了很大的困难。</p>
+<p>比如说，将guest的间接跳转指令翻译到host上时，我们可能需要去查表来找到host指令对应的跳转地址。又或者，有的指令集的浮点运算并没有严格实现IEEE 754标准。为了解决这些潜在的语义，我们需要在翻译时额外花费大量精力。</p>
+<p>为了解决这一问题，我们引入了helper function来模拟guest instr的复杂语义。</p>
+<p>helper function听起来很神秘，但实际上就是一个函数，模拟一条指令的语义。这样，再复杂的指令语义翻译，都可以用helper function解决。图（假装有）中展示了一条AArch64指令是怎样被转换到Host上的</p>
+<p>到了这里，我们可以发现，这样的作法带来了两处不可忽视的开销：</p>
+<ol>
+<li>函数的调用带来了上下文的切换，传参，传返回值带来的开销是很大的</li>
+<li>helper function往往是被编译在DBT Text段中的，如果Code Cache中的程序流调用位于DBT Text中的helper function, 就破坏了Instr缓存的locality。</li>
+</ol>
+<h2 id="Inlining-Helper-Functions-in-DBT"><a href="#Inlining-Helper-Functions-in-DBT" class="headerlink" title="Inlining Helper Functions in DBT"></a>Inlining Helper Functions in DBT</h2><p>Inlining Helper Function 可以解决上面两个问题，就像传统编译器的函数内联那样，但它的实现却有很大困难：在一个DBT中，对HF的调用是动态生成的，但是HF本身是静态编译的。这意味着调用者与被调用者之间存在根本性的区别——他们不是由同一套编译器完成的，因此现存的优化方案将变得不可行（why？）。</p>
+<p>一种简单粗暴的想法是在Code Cache中直接创建一份HF的拷贝，但考虑到诸多原因，这并不可行：比如HF的native版本中可能存在以PC为基地址的寻址。为此，我们需要对HF的代码做一些修改，来让它能内联进Code Cache里。</p>
+<p>具体的方案：在HF被编译为ASM后，用Code Extraction提取出来，再用Code Transformation生成可在 Code Cache中执行的ASM和Relocation Records。在需要时，将其编译到Code Cache中。</p>
+<h2 id="重定位信息生成"><a href="#重定位信息生成" class="headerlink" title="重定位信息生成"></a>重定位信息生成</h2><p>生成hfi文件</p>
 
       
     </div>
@@ -332,15 +347,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/Hello-World/Hello-World/" rel="next" title="Hello, World!">
+                <i class="fa fa-chevron-left"></i> Hello, World!
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/Helper-Function-Inlining-in-Dynamic-Binary-Translation/" rel="prev" title="Helper Function Inlining in Dynamic Binary Translation">
-                Helper Function Inlining in Dynamic Binary Translation <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -454,7 +469,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#Hello-World"><span class="nav-number">1.</span> <span class="nav-text">Hello, World!</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Abstract"><span class="nav-number">1.</span> <span class="nav-text">Abstract</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DBT"><span class="nav-number">2.</span> <span class="nav-text">DBT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Helper-Functions"><span class="nav-number">3.</span> <span class="nav-text">Helper Functions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Inlining-Helper-Functions-in-DBT"><span class="nav-number">4.</span> <span class="nav-text">Inlining Helper Functions in DBT</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%87%8D%E5%AE%9A%E4%BD%8D%E4%BF%A1%E6%81%AF%E7%94%9F%E6%88%90"><span class="nav-number">5.</span> <span class="nav-text">重定位信息生成</span></a></li></ol></div>
             
 
           </div>

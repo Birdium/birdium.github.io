@@ -237,6 +237,141 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://birdium.github.io/Helper-Function-Inlining-in-Dynamic-Binary-Translation/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Birdium 的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/Helper-Function-Inlining-in-Dynamic-Binary-Translation/" itemprop="url">Helper Function Inlining in Dynamic Binary Translation</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2023-03-06T22:06:47+08:00">
+                2023-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>论文链接: <a target="_blank" rel="noopener" href="http://cobweb.cs.uga.edu/~wenwen/papers/cc21.pdf">http://cobweb.cs.uga.edu/~wenwen/papers/cc21.pdf</a></p>
+<h2 id="Abstract"><a href="#Abstract" class="headerlink" title="Abstract"></a>Abstract</h2><p>动态二进制翻译(DBT)是许多重要应用的基石。在DBT中，Helper Function为系统的构建带来了很大的便利，但与此同时也引入了不小的开销。本文作者提出了一种将Helper Function内联化的方法。</p>
+<p>…省略</p>
+<h2 id="DBT"><a href="#DBT" class="headerlink" title="DBT"></a>DBT</h2><h2 id="Helper-Functions"><a href="#Helper-Functions" class="headerlink" title="Helper Functions"></a>Helper Functions</h2><p>不同指令集下的指令看似功能相似，实际上可能包含完全不同的语义，这就给DBT工作带来了很大的困难。</p>
+<p>比如说，将guest的间接跳转指令翻译到host上时，我们可能需要去查表来找到host指令对应的跳转地址。又或者，有的指令集的浮点运算并没有严格实现IEEE 754标准。为了解决这些潜在的语义，我们需要在翻译时额外花费大量精力。</p>
+<p>为了解决这一问题，我们引入了helper function来模拟guest instr的复杂语义。</p>
+<p>helper function听起来很神秘，但实际上就是一个函数，模拟一条指令的语义。这样，再复杂的指令语义翻译，都可以用helper function解决。图（假装有）中展示了一条AArch64指令是怎样被转换到Host上的</p>
+<p>到了这里，我们可以发现，这样的作法带来了两处不可忽视的开销：</p>
+<ol>
+<li>函数的调用带来了上下文的切换，传参，传返回值带来的开销是很大的</li>
+<li>helper function往往是被编译在DBT Text段中的，如果Code Cache中的程序流调用位于DBT Text中的helper function, 就破坏了Instr缓存的locality。</li>
+</ol>
+<h2 id="Inlining-Helper-Functions-in-DBT"><a href="#Inlining-Helper-Functions-in-DBT" class="headerlink" title="Inlining Helper Functions in DBT"></a>Inlining Helper Functions in DBT</h2><p>Inlining Helper Function 可以解决上面两个问题，就像传统编译器的函数内联那样，但它的实现却有很大困难：在一个DBT中，对HF的调用是动态生成的，但是HF本身是静态编译的。这意味着调用者与被调用者之间存在根本性的区别——他们不是由同一套编译器完成的，因此现存的优化方案将变得不可行（why？）。</p>
+<p>一种简单粗暴的想法是在Code Cache中直接创建一份HF的拷贝，但考虑到诸多原因，这并不可行：比如HF的native版本中可能存在以PC为基地址的寻址。为此，我们需要对HF的代码做一些修改，来让它能内联进Code Cache里。</p>
+<p>具体的方案：在HF被编译为ASM后，用Code Extraction提取出来，再用Code Transformation生成可在 Code Cache中执行的ASM和Relocation Records。在需要时，将其编译到Code Cache中。</p>
+<h2 id="重定位信息生成"><a href="#重定位信息生成" class="headerlink" title="重定位信息生成"></a>重定位信息生成</h2><p>生成hfi文件</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://birdium.github.io/Hello-World/Hello-World/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -390,7 +525,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-count">2</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
